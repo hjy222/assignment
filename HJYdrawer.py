@@ -1,28 +1,51 @@
-
-
-import turtle as T
+import turtle
 import random
 import time
 
-# 画樱花的躯干(60,t)
+def Wind(x,y):
+    time.sleep(0.001)
+    t.color("white")
+    t.penup()
+    t.goto(x,y)
+    t.begin_fill()
+    t.setheading(90)
+    t.circle(-8, 180)
+    t.setheading(90)
+    t.circle(-16, 180)
+    t.setheading(90)
+    t.circle(-8, 180)
+    t.setheading(0)
+    t.circle(-16, 180)
+    t.setheading(-90)
+    t.circle(-8, 180)
+    t.setheading(-90)
+    t.circle(-16, 180)
+    t.setheading(-90)
+    t.circle(-8, 180)
+    t.setheading(0)
+    t.circle(16, -150)
+    t.setheading(90)
+    t.end_fill()
+
+
 def Tree(branch, t):
     time.sleep(0.0005)
     if branch > 3:
         if 8 <= branch <= 12:
             if random.randint(0, 2) == 0:
-                t.color('snow')  # 白
+                t.color('lightpink')
             else:
-                t.color('lightcoral')  # 淡珊瑚色
+                t.color('lightcoral')
             t.pensize(branch / 3)
         elif branch < 8:
             if random.randint(0, 1) == 0:
-                t.color('snow')
+                t.color('lightpink')
             else:
-                t.color('lightcoral')  # 淡珊瑚色
+                t.color('lightcoral')
             t.pensize(branch / 2)
         else:
-            t.color('sienna')  # 赭(zhě)色
-            t.pensize(branch / 10)  # 6
+            t.color('sienna')
+            t.pensize(branch / 10)
         t.forward(branch)
         a = 1.5 * random.random()
         t.right(20 * a)
@@ -45,30 +68,34 @@ def Petal(m, t):
         t.left(90)
         t.forward(a)
         t.down()
-        t.color('lightcoral')  # 淡珊瑚色
+        if random.randint(0, 2) == 0:
+            t.color('lightpink')
+        else:
+            t.color('lightcoral')
         t.circle(1)
         t.up()
         t.backward(a)
         t.right(90)
         t.backward(b)
 
-# 绘图区域
-t = T.Turtle()
-# 画布大小
-w = T.Screen()
-t.hideturtle()  # 隐藏画笔
+
+t = turtle.Turtle()
+w = turtle.Screen()
+t.hideturtle()
 t.getscreen().tracer(5, 0)
-w.screensize(bg='wheat')  # wheat小麦
+w.screensize(bg='lightcyan')
 t.left(90)
 t.up()
 t.backward(150)
 t.down()
 t.color('sienna')
 
-# 画樱花的躯干
-Tree(60, t)
-# 掉落的花瓣
-Petal(200, t)
-w.exitonclick()
-T.done()
 
+Tree(60, t)
+Petal(100, t)
+Wind(-200,270)
+Wind(-50,300)
+Wind(60,260)
+Wind(180,280)
+w.exitonclick()
+turtle.done()
